@@ -29,6 +29,7 @@
  
  .page-header .header-content {
    width: 90%;
+   margin: 0 auto;
    margin: 3.2rem auto;
    position: relative;
  }
@@ -49,7 +50,7 @@
 
  @media (min-width: 700px) {
    .page-header {
-     height: 240px;
+     height: 280px;
    }
 
    .page-header .top-bar-container {
@@ -68,6 +69,6 @@
    }
 
    .page-header .header-content strong {
-     max-width: 370px;
+     max-width: 470px;
    }
  }

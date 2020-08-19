@@ -28,7 +28,12 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.6rem;
     position: absolute;
-    bottom: -70px;
+    bottom: -100px;
+  }
+
+  #search-teachers .input-block + .input-block, 
+  #search-teachers .select-block + .select-block {
+    margin-top: 0;
   }
 
   #page-teacher-list main {
