@@ -3,33 +3,56 @@ import React from 'react';
 import './styles.css';
 
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg"
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  name: string;
+  avatar: string;
+  whatsapp: string;
+  bio: string;
+  subject: string;
+  cost: string;
+}
+
+interface teacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<teacherItemProps> = ({ teacher }) => {
+  function createNewConnection() {
+    api.post('connections', {
+      user_id: teacher.id
+    });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars1.githubusercontent.com/u/49079754?s=460&u=9e69ab7108dec45445f7ed05db9ac5e97ad0a552&v=4" alt="Eduardo Freitas"/>
+        <img src={teacher.avatar} alt={teacher.name}/>
         <div>
-          <strong>Eduardo Freitas</strong>
-          <span>Química</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
       <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br/><br/>
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.
+        {teacher.bio}
       </p>
       <footer>
         <p>
           preço/hora
           <strong>
-            R$ 80,00
+            R$ {teacher.cost}
           </strong>
         </p>
-        <button>
+        <a
+          target="_blank"
+          onClick={createNewConnection} 
+          href={`https://wa.me/${teacher.whatsapp}`}
+        >
           <img src={whatsappIcon} alt="Whatsapp"/>
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   )
